@@ -45,8 +45,8 @@
                       </li>
                     </ul>
                     <form class="d-flex">
-                      <input class="form-control me-2" type="search" placeholder="Buscar filme" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit">Buscar</button>
+                      <input class="form-control me-2" id="input-buscar-filme" type="search" placeholder="Buscar filme" aria-label="Search">
+                      <button class="btn btn-outline-success" id="btn-buscar-filme" type="submit">Buscar</button>
                     </form>
                   </div>
                 </div>
@@ -58,18 +58,23 @@
             <div class="row row-cols-1 row-cols-md-2 g-4"> <!--container? (margem esquerda)-->
                 <!--ajustar codigo pra funcionar (dinamicamente) em diversos tamanhos de tela-->
 
+                <!-- forEach... -->
+
                     <div class="card mb-3 w-25">
-                        <img src="./imagens/tch1.jpg" class="card-img-top" alt="Cartaz do filme 1">
+                        <img src="./imagens/tch1.jpg" class="card-img-top" alt="Cartaz do filme ${nome-do-filme}">
                         <div class="card-body">
-                            <h6 class="card-title">Nome do filme 1</h6>
-                            <p class="card-text">Sinopse do filme 1</p>
+                            <h6 class="card-title">Nome do filme (pegar da API)</h6>
+                            <p class="card-text">Sinopse do filme (pegar da API)</p>
                             <ul class="list-group list-group-flush">
-                              <li class="list-group-item">An item</li>
+                              <li class="list-group-item">uma informação (pegar da API)</li>
+                              <li class="list-group-item">ao lado do de cima (pegar da API)</li>
+                              <li class="list-group-item">outra informação (pegar da API)</li>
+                              <li class="list-group-item">mais outra informação (pegar da API)</li>
                             </ul>
                         </div>
                     </div>
 
-                    <div class="card mb-3 w-25">
+                    <!-- <div class="card mb-3 w-25">
                         <img src="./imagens/tch2.jpg" class="card-img-top" alt="Cartaz do filme 2">
                         <div class="card-body">
                             <h6 class="card-title">Nome do filme 2</h6>
@@ -100,7 +105,7 @@
                               <li class="list-group-item">An item</li>
                             </ul>
                         </div>
-                    </div>  
+                    </div>   -->
             
             </div>
 
