@@ -5,8 +5,10 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-US-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./css/style.css"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./css/style.css"/>
+        <script src="./js/classes.js"></script>
         <title>Catálogo</title>
     </head>
 
@@ -43,8 +45,8 @@
                       </li>
                     </ul>
                     <form class="d-flex">
-                      <input class="form-control me-2" type="search" placeholder="Buscar filme" aria-label="Search">
-                      <button class="btn btn-outline-success" type="submit">Buscar</button>
+                      <input class="form-control me-2" id="input-buscar-filme" type="search" placeholder="Buscar filme" aria-label="Search">
+                      <button class="btn btn-outline-success" id="btn-buscar-filme" type="submit">Buscar</button>
                     </form>
                   </div>
                 </div>
@@ -53,20 +55,35 @@
         </header>
 
         <main>
+
+          <div id="lista-filmes">
+
+            <div class="card mb-3 w-25">
+              <img src="./imagens/tch1.jpg" class="card-img-top" alt="Cartaz do filme ${nome-do-filme}">
+              <div class="card-body">
+                  <h6 class="card-title">Nome do filme (pegar da API)</h6>
+                  <p class="card-text">Sinopse do filme (pegar da API)</p>
+                  <div style="display: flex; justify-content:space-around;">
+                    <div style="flex-grow: 1;">Aventura (API)</div>
+                    <div style="flex-grow: 1;">2022 (API)</div>
+                    <div style="flex-grow: 1;">16A (API)</div>
+                  </div>
+                  <a href="#">Detalhes (API)?</a>
+              </div>
+          </div>
+
+          </div>
+
+          <div id="mostrar-filme">
+            
+          </div>
+
+
+
             <div class="row row-cols-1 row-cols-md-2 g-4"> <!--container? (margem esquerda)-->
                 <!--ajustar codigo pra funcionar (dinamicamente) em diversos tamanhos de tela-->
 
-                    <div class="card mb-3 w-25">
-                        <img src="./imagens/tch1.jpg" class="card-img-top" alt="Cartaz do filme 1">
-                        <div class="card-body">
-                            <h6 class="card-title">Nome do filme 1</h6>
-                            <p class="card-text">Sinopse do filme 1</p>
-                            <ul class="list-group list-group-flush">
-                              <li class="list-group-item">An item</li>
-                            </ul>
-                        </div>
-                    </div>
-
+                <!-- forEach... -->
                     <div class="card mb-3 w-25">
                         <img src="./imagens/tch2.jpg" class="card-img-top" alt="Cartaz do filme 2">
                         <div class="card-body">
@@ -78,7 +95,7 @@
                         </div>
                     </div>
 
-                    <div class="card mb-3 w-25">
+                <!-- <div class="card mb-3 w-25">
                         <img src="./imagens/tch1.jpg" class="card-img-top" alt="Cartaz do filme 3">
                         <div class="card-body">
                             <h6 class="card-title">Nome do filme 3</h6>
@@ -98,11 +115,11 @@
                               <li class="list-group-item">An item</li>
                             </ul>
                         </div>
-                    </div>  
+                    </div>   -->
             
             </div>
 
         </main>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="./js/script.js"></script>
     </body>
 </html>
