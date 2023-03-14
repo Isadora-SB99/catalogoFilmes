@@ -17,17 +17,17 @@ btnBuscarFilme.onclick = () => {
             resp.Search.forEach((item) => {
                 console.log(item);
                 let filme = new Filme(
-                    item.imdbID,
-                    item.Title,
-                    item.Year,
-                    null,
-                    null,
-                    item.Poster,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null
+                    item.imdbID, //id
+                    item.Title, //titulo
+                    item.Year, //ano
+                    null, //genero
+                    null, //duracao
+                    null, //sinopse
+                    item.Poster, //cartaz
+                    null, //direcao
+                    null, //elenco
+                    null, //classificacao
+                    null, //avaliacao
                 );
                 filmes.push(filme);
             });

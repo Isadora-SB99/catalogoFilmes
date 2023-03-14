@@ -25,6 +25,7 @@ class Filme{
         this.elenco = elenco
         this.classificacao = classificacao
         this.avaliacao = avaliacao
+        this.btnDetalhes = null;
 
     }
 
@@ -58,7 +59,7 @@ class Filme{
         divGenero.appendChild(document.createTextNode(this.genero));
         divAnoProducao.appendChild(document.createTextNode(this.ano));
         divClassificacao.appendChild(document.createTextNode(this.classificacao));
-        
+
         divDetalhes.appendChild(divGenero);
         divDetalhes.appendChild(divAnoProducao);
         divDetalhes.appendChild(divClassificacao);
@@ -68,10 +69,21 @@ class Filme{
         card.appendChild(hCardTitle);
         card.appendChild(divDetalhes);
 
+        this.setBtnDetalhes();
+        cardBody.appendChild(this.getBtnDetalhes());
+
         return card;
+    }
 
+    setBtnDetalhes = () => {
+        this.btnDetalhes = document.createElement("button");
+        this.btnDetalhes.appendChild(document.createTextNode("Detalhes"));
+        this.btnDetalhes.setAttribute("id", this.id);
+        this.btnDetalhes.setAttribute("class", "btnDetalhesFilme");
+    }
 
-
+    getBtnDetalhes = () => {
+        return this.btnDetalhes;
     }
 
     
