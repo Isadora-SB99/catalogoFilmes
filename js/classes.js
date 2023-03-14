@@ -30,7 +30,7 @@ class Filme{
 
     getCard = async () => {
         let card = document.createElement("div");
-        card.setAttribute("class", "card");
+        card.setAttribute("class", "card mb-3 w-25");
         
         let imgCartaz = document.createElement("img");
         imgCartaz.setAttribute("class", "card-img-topz");
