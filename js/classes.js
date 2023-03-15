@@ -91,19 +91,6 @@ class Filme{
         imgCartaz.setAttribute("class", "card-img-topz");
         imgCartaz.setAttribute("src", this.cartaz);
 
-            // this.id = id;
-            // this.titulo = titulo;
-        // this.ano = ano;
-        // this.genero= genero
-        // this.duracao= duracao
-        // this.sinopse= sinopse
-            // this.cartaz = cartaz
-        // this.direcao = direcao
-        // this.elenco = elenco
-        // this.classificacao = classificacao
-        // this.avaliacao = avaliacao
-        // this.btnDetalhes = null;
-
         let cardDetalhado = document.createElement("div");
         cardDetalhado.setAttribute("class", "card mb-3 w-25");
 

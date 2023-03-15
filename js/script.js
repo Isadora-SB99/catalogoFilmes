@@ -11,7 +11,7 @@ let btnBuscarFilme = document.querySelector("#btn-buscar-filme");
 btnBuscarFilme.onclick = () => {
     if(inputBuscarFilme.value.length > 0){
         let filmes = new Array();
-        fetch("http://www.omdbapi.com/?apikey=d24fb342&s="+inputBuscarFilme.value)
+        fetch("https://www.omdbapi.com/?apikey=d24fb342&s="+inputBuscarFilme.value)
         .then((resp) => resp.json())
         .then((resp) => {
             resp.Search.forEach((item) => {
@@ -52,13 +52,16 @@ let listarFilmes = async (filmes) => {
     }
 
 
-    //não acontece nada ao clicar no botão
+    //não acontece NADA ao clicar no botão
     let detalhesFilme = async (id) => {
-        fetch("http://www.omdbapi.com/?apikey=d24fb342&s="+inputBuscarFilme.value)
+
+        //ocultar div aqui?
+
+        fetch("https://www.omdbapi.com/?apikey=d24fb342&s="+inputBuscarFilme.value)
         .then((resp) => resp.json())
         .then((resp) => {
 
-            //instanciar objeto filme OK
+            //instanciar objeto filme
             let filme = new Filme(
                 resp.imdbID, //id
                 resp.Title, //titulo
