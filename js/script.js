@@ -40,10 +40,51 @@ btnBuscarFilme.onclick = () => {
 let listarFilmes = async (filmes) => {
     let listaFilmes = await document.querySelector("#lista-filmes");
     listaFilmes.innerHTML = "";
-    console.log(listaFilmes);
+    //console.log(listaFilmes);
     if(filmes.length > 0) {
         filmes.forEach(async(filme) => {
+            console.log(filme);
             listaFilmes.appendChild(await filme.getCard());
+            filme.getBtnDetalhes().onclick = () => {
+                detalhesFilme(filme.id);
+            }
         });
     }
+
+
+    //não acontece nada ao clicar no botão
+    let detalhesFilme = async (id) => {
+        fetch("http://www.omdbapi.com/?apikey=d24fb342&s="+inputBuscarFilme.value)
+        .then((resp) => resp.json())
+        .then((resp) => {
+
+            //instanciar objeto filme OK
+            let filme = new Filme(
+                resp.imdbID, //id
+                resp.Title, //titulo
+                resp.Year, //ano
+                resp.Genre, //genero
+                resp.Runtime, //duracao
+                resp.Plot, //sinopse
+                resp.Poster, //cartaz
+                resp.Director, //direcao
+                resp.Actors, //elenco
+                resp.Rated, //classificacao
+                resp.Ratings, //avaliacao
+            );
+
+            //chamar metodo para gerar card com detalhes do filme
+            filme.getCardDetalhado();
+
+            //ocultar div #lista-filmes
+            function ocultarDivListaFilmes(){
+                document.getElementsById("lista-filmes").style.display="none";
+            }
+            //ocultar ---> //let listaFilmes = await document.querySelector("#lista-filmes");
+            //let mostrarFilme = await document.querySelector("#mostrar-filme");
+            
+
+        });
+    }
+
 }
