@@ -62,6 +62,9 @@ let listarFilmes = async (filmes) => {
         .then((resp) => {
 
             //instanciar objeto filme
+            //dados vindo undefined
+
+            console.log(resp);
             let filme = new Filme(
                 resp.imdbID, //id
                 resp.Title, //titulo
@@ -75,6 +78,8 @@ let listarFilmes = async (filmes) => {
                 resp.Rated, //classificacao
                 resp.Ratings, //avaliacao
             );
+            
+            console.log(filme);
 
             //chamar metodo para gerar card com detalhes do filme
             filme.getCardDetalhado();
