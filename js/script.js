@@ -62,6 +62,7 @@ let listarFilmes = async (filmes) => {
         .then((resp) => {
 
             //instanciar objeto filme
+            //dados vindo undefined
             let filme = new Filme(
                 resp.imdbID, //id
                 resp.Title, //titulo
