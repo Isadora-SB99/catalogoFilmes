@@ -1,25 +1,25 @@
-class Ator{
-    constructor(id, nome){
+class Ator {
+    constructor(id, nome) {
         this.id = id;
         this.nome = nome;
     }
 }
 
-class Diretor{
-    constructor(id, nome){
+class Diretor {
+    constructor(id, nome) {
         this.id = id;
         this.nome = nome;
     }
 }
 
-class Filme{
-    constructor(id, titulo, ano, genero, duracao, sinopse, cartaz, direcao, elenco, classificacao, avaliacao){
+class Filme {
+    constructor(id, titulo, ano, genero, duracao, sinopse, cartaz, direcao, elenco, classificacao, avaliacao) {
         this.id = id;
         this.titulo = titulo;
         this.ano = ano;
-        this.genero= genero
-        this.duracao= duracao
-        this.sinopse= sinopse
+        this.genero = genero
+        this.duracao = duracao
+        this.sinopse = sinopse
         this.cartaz = cartaz
         this.direcao = direcao
         this.elenco = elenco
@@ -32,11 +32,11 @@ class Filme{
     getCard = async () => {
         let card = document.createElement("div");
         card.setAttribute("class", "card mb-3 w-25");
-        
+
         let imgCartaz = document.createElement("img");
         imgCartaz.setAttribute("class", "card-img-topz");
         imgCartaz.setAttribute("src", this.cartaz);
-        
+
         let cardBody = document.createElement("div");
         cardBody.setAttribute("class", "card-body");
 
@@ -45,7 +45,7 @@ class Filme{
 
         let divDetalhes = document.createElement("div");
         divDetalhes.setAttribute("style", "display:flex; justify-content:space-around;");
-        
+
         let divGenero = document.createElement("div");
         divGenero.setAttribute("style", "flex-grow:1");
 
@@ -66,8 +66,8 @@ class Filme{
 
         card.appendChild(imgCartaz);
         card.appendChild(cardBody);
-        card.appendChild(hCardTitle);
-        card.appendChild(divDetalhes);
+        cardBody.appendChild(hCardTitle);
+        cardBody.appendChild(divDetalhes);
 
         this.setBtnDetalhes();
         cardBody.appendChild(this.getBtnDetalhes());
@@ -76,7 +76,7 @@ class Filme{
     }
 
     setBtnDetalhes = () => {
-        this.btnDetalhes = document.createElement("button");
+        this.btnDetalhes = document.createElement('button');
         this.btnDetalhes.appendChild(document.createTextNode("Detalhes"));
         this.btnDetalhes.setAttribute("id", this.id);
         this.btnDetalhes.setAttribute("class", "btnDetalhesFilme");
@@ -86,42 +86,76 @@ class Filme{
         return this.btnDetalhes;
     }
 
-    getCardDetalhado = async () => {
-        let imgCartaz = document.createElement("img");
-        imgCartaz.setAttribute("class", "card-img-topz");
-        imgCartaz.setAttribute("src", this.cartaz);
-
+    getDetalhesFilme = () => {
+        //criando os elementos do card
         let cardDetalhado = document.createElement("div");
-        cardDetalhado.setAttribute("class", "card mb-3 w-25");
+        cardDetalhado.setAttribute("class", "card mb-3");
+        cardDetalhado.setAttribute("style", "max-width: 540px;");
+
+        let divRow = document.createElement("div");
+        divRow.setAttribute("class", "row g-0");
+
+        let divMd4 = document.createElement("div");
+        divMd4.setAttribute("class", "col-md-4");
 
         let imgPoster = document.createElement("img");
-        imgPoster.setAttribute("class", "card-img-topz");
+        imgPoster.setAttribute("class", "img-fluid rounded-start");
         imgPoster.setAttribute("src", this.cartaz);
+        imgPoster.setAttribute("alt", "Cartaz do filme"+this.titulo);
+
+        let divMd8 = document.createElement("div");
+        divMd8.setAttribute("class", "col-md-8");
+
+        let cardBody = document.createElement("div");
+        cardBody.setAttribute("class", "card-body");
 
         let hCardTitle = document.createElement("h6");
         hCardTitle.setAttribute("class", "card-title");
 
-        let pCardText = document.createElement("p");
-        pCardText.setAttribute("class", "card-text");
+        let pSinopse = document.createElement("p");
+        pSinopse.setAttribute("class", "card-text");
+
+        let pInfos = document.createElement("p");
+        pSinopse.setAttribute("class", "card-text");
+
+        let divBotao = document.createElement("div");
+        divBotao.setAttribute("class", "d-grid gap-2 col-6 mx-auto mt-3 mb-2");
+
+        let btnSalvar = document.createElement("button");
+        btnSalvar.setAttribute("class", "btn btn-success");
+        
+        //relacionando os elementos do card
 
         hCardTitle.appendChild(document.createTextNode(this.titulo));
-        
-        pCardText.appendChild(document.createTextNode(this.ano));
-        pCardText.appendChild(document.createTextNode(this.genero));
-        pCardText.appendChild(document.createTextNode(this.duracao));
-        pCardText.appendChild(document.createTextNode(this.sinopse));
-        pCardText.appendChild(document.createTextNode(this.direcao));
-        pCardText.appendChild(document.createTextNode(this.elenco));
-        pCardText.appendChild(document.createTextNode(this.classificacao));
-        pCardText.appendChild(document.createTextNode(this.avaliacao));
+        pSinopse.appendChild(document.createTextNode(this.sinopse));
 
-        cardDetalhado.appendChild(imgPoster);
-        cardDetalhado.appendChild(hCardTitle);
-        cardDetalhado.appendChild(pCardText);
+        pInfos.appendChild(document.createTextNode("Ano: "+this.ano+"; "));
+        pInfos.appendChild(document.createTextNode("Duração: "+this.duracao+"; "));
+        pInfos.appendChild(document.createTextNode("Categoria: "+this.genero+"; "));
+        pInfos.appendChild(document.createTextNode("Direção: "+this.direcao+"; "));
+        pInfos.appendChild(document.createTextNode("Elenco: "+this.elenco+"; "));
+        pInfos.appendChild(document.createTextNode("Classificação: "+this.classificacao+"; "));
+        pInfos.appendChild(document.createTextNode("Avaliação: "+this.avaliacao+";"));
+
+        btnSalvar.appendChild(document.createTextNode("Favoritar"));
+
+        cardBody.appendChild(hCardTitle);
+        cardBody.appendChild(pSinopse);
+        cardBody.appendChild(pInfos);
+
+        divMd4.appendChild(imgPoster);
+        divMd8.appendChild(cardBody);
+        divBotao.appendChild(btnSalvar);
+
+        divRow.appendChild(divMd4);
+        divRow.appendChild(divMd8);
+        divRow.appendChild(divBotao);
+
+        cardDetalhado.appendChild(divRow);
 
         return cardDetalhado;
 
     }
 
-    
+
 }
