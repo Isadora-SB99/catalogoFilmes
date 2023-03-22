@@ -1,12 +1,7 @@
 let inputBuscarFilme = document.querySelector("#input-buscar-filme");
 let btnBuscarFilme = document.querySelector("#btn-buscar-filme");
 
-// btnBuscarFilme.onclick = () => {
-//     if(inputBuscarFilme.value.length > 0){
-//         console.log(inputBuscarFilme.value);
-//     }
-//     return false;
-// }
+//let btnSalvar = document.querySelector(".btnSalvar");
 
 btnBuscarFilme.onclick = () => {
     if (inputBuscarFilme.value.length > 0) {
@@ -15,8 +10,6 @@ btnBuscarFilme.onclick = () => {
             .then((resp) => resp.json())
             .then((resp) => {
                 resp.Search.forEach((item) => {
-                    //console.log("ITEM")
-                    //console.log(item);
                     let filme = new Filme(
                         item.imdbID, //id
                         item.Title, //titulo
@@ -56,7 +49,6 @@ let listarFilmes = async (filmes) => {
     }
 }
 
-//não acontece NADA ao clicar no botão
 let detalhesFilme = async (id) => {
     fetch("https://www.omdbapi.com/?apikey=d24fb342&i=" + id)
         .then((resp) => resp.json())
@@ -82,4 +74,26 @@ let detalhesFilme = async (id) => {
 
 
         });
+}
+
+let salvarFavoritos = (id) => {
+    fetch("https://www.omdbapi.com/?apikey=d24fb342&i=" + id)
+        .then((resp) => resp.json())
+        .then((resp) => {
+            localStorage.setItem(resp.titulo, JSON.stringify(resp));
+
+        });
+}
+
+// btnSalvar.onclick = () => {
+//     let filmeSalvar = getFilme(id);
+
+//     localStorage.setItem(filmeSalvar.titulo, JSON.stringify(filmeSalvar));
+
+// }
+
+let listarFavoritos = () => {
+    let filmeString = localStorage.getItem(filmeSalvar.titulo);
+    let filmeObj = JSON.parse(filmeString);
+    console.log(filmeObj);
 }

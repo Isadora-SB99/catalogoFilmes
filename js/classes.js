@@ -121,8 +121,13 @@ class Filme {
         let divBotao = document.createElement("div");
         divBotao.setAttribute("class", "d-grid gap-2 col-6 mx-auto mt-3 mb-2");
 
+
+        //criando botão
         let btnSalvar = document.createElement("button");
-        btnSalvar.setAttribute("class", "btn btn-success");
+        btnSalvar.appendChild(document.createTextNode("Salvar"));
+        //btnSalvar.setAttribute("class", "btn btn-success");
+        btnSalvar.setAttribute("id", this.id);
+        btnSalvar.setAttribute("class", "btnSalvar btn btn-success");
         
         //relacionando os elementos do card
 
@@ -136,8 +141,6 @@ class Filme {
         pInfos.appendChild(document.createTextNode("Elenco: "+this.elenco+"; "));
         pInfos.appendChild(document.createTextNode("Classificação: "+this.classificacao+"; "));
         pInfos.appendChild(document.createTextNode("Avaliação: "+this.avaliacao+";"));
-
-        btnSalvar.appendChild(document.createTextNode("Favoritar"));
 
         cardBody.appendChild(hCardTitle);
         cardBody.appendChild(pSinopse);
