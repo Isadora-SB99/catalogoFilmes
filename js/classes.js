@@ -124,10 +124,11 @@ class Filme {
 
         //criando botão
         let btnSalvar = document.createElement("button");
+        btnSalvar.setAttribute("class", "btn btn-success");
         btnSalvar.appendChild(document.createTextNode("Salvar"));
         //btnSalvar.setAttribute("class", "btn btn-success");
-        btnSalvar.setAttribute("id", this.id);
-        btnSalvar.setAttribute("class", "btnSalvar btn btn-success");
+        // btnSalvar.setAttribute("id", this.id);
+        btnSalvar.setAttribute("onclick", this.salvar());
         
         //relacionando os elementos do card
 
@@ -159,6 +160,10 @@ class Filme {
         return cardDetalhado;
 
     }
+
+
+//metodo salvasr aqui dentro
+    salvar = () => {}
 
 
 }
