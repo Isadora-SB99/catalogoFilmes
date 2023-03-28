@@ -119,16 +119,20 @@ class Filme {
         pSinopse.setAttribute("class", "card-text");
 
         let divBotao = document.createElement("div");
-        divBotao.setAttribute("class", "d-grid gap-2 col-6 mx-auto mt-3 mb-2");
+        divBotao.setAttribute("class", "d-grid gap-2 d-md-block");
 
-
-        //criando botão
+        //criando botão salvar
         let btnSalvar = document.createElement("button");
-        btnSalvar.setAttribute("class", "btn btn-success");
         btnSalvar.appendChild(document.createTextNode("Salvar"));
-        //btnSalvar.setAttribute("class", "btn btn-success");
-        // btnSalvar.setAttribute("id", this.id);
-        btnSalvar.setAttribute("onclick", this.salvar());
+        btnSalvar.setAttribute("id", 'btnSalvar');
+        btnSalvar.setAttribute("class", "btn btn-warning");
+        divBotao.appendChild(btnSalvar);
+        
+        let btnFechar = document.createElement("button");
+        btnFechar.appendChild(document.createTextNode("Fechar"));
+        btnFechar.setAttribute("id", 'btnFechar');
+        btnFechar.setAttribute("class", "btn btn-danger");
+        divBotao.appendChild(btnFechar);
         
         //relacionando os elementos do card
 
@@ -149,7 +153,6 @@ class Filme {
 
         divMd4.appendChild(imgPoster);
         divMd8.appendChild(cardBody);
-        divBotao.appendChild(btnSalvar);
 
         divRow.appendChild(divMd4);
         divRow.appendChild(divMd8);
@@ -160,10 +163,5 @@ class Filme {
         return cardDetalhado;
 
     }
-
-
-//metodo salvasr aqui dentro
-    salvar = () => {}
-
 
 }
