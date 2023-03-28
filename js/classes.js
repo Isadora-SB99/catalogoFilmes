@@ -164,4 +164,15 @@ class Filme {
 
     }
 
+    setBtnRemoverFavorito = () =>{
+        this.btnRemoverFavorito = document.createElement('button');
+        this.btnRemoverFavorito.appendChild(document.createTextNode("Remover"));
+        this.btnRemoverFavorito.setAttribute("id", this.id);
+        this.btnRemoverFavorito.setAttribute("class", "btnRemoverFavorito");
+    }
+
+    getBtnRemoverFavorito = () => {
+        return this.btnRemoverFavorito;
+    }
+
 }

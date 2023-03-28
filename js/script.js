@@ -1,7 +1,7 @@
 let inputBuscarFilme = document.querySelector("#input-buscar-filme");
 let btnBuscarFilme = document.querySelector("#btn-buscar-filme");
 
-let btnSalvar = document.querySelector("button");
+// let btnSalvar = document.querySelector("button");
 
 let navFavoritos = document.querySelector("#nav-favoritos");
 
@@ -82,6 +82,7 @@ let detalhesFilme = async (id) => {
 
             document.querySelector("#btnSalvar").onclick = () =>{
                 salvarFilme(filme);
+                // divBotao.appendChild(getBtnRemoverFavorito);
             }
 
             document.querySelector("#lista-filmes").style.display = "none";
@@ -90,8 +91,7 @@ let detalhesFilme = async (id) => {
 }
 
 let salvarFilme = (filme) => {
-   let filmesString = localStorage.getItem('filmesFavoritos');
-
+    let filmesString = localStorage.getItem('filmesFavoritos');
     if (filmesString == null || filmesString == undefined || filmesString == "") {
         let arrayFilmes = new Array();
         localStorage.setItem('filmesFavoritos', JSON.stringify(arrayFilmes));
@@ -136,9 +136,13 @@ let listarFavoritos = () => {
     listarFilmes(filmes);
 }
 
-let removerFavorito = (filme) => {
+let removerFavorito = (id) => {
     let filmesString = localStorage.getItem('filmesFavoritos');
     var filmes = JSON.parse(filmesString);
-    filmes.remove(filme);
+
+    let indexFilmeRemover = filme => filme.id == id;
+    let filmeRemover = filmes.findIndex(indexFilmeRemover);
+    filmes.splice(filmeRemover, 1);
+    
     localStorage.setItem('filmesFavoritos', JSON.stringify(filmes));
 }
