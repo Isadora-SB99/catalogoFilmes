@@ -26,6 +26,7 @@ class Filme {
         this.classificacao = classificacao
         this.avaliacao = avaliacao
         this.btnDetalhes = null;
+        this.favorito=false;
 
     }
 
@@ -71,6 +72,15 @@ class Filme {
 
         this.setBtnDetalhes();
         cardBody.appendChild(this.getBtnDetalhes());
+
+        if(this.favorito){
+            let btnRemoverFavorito = document.createElement('button');
+            btnRemoverFavorito.appendChild(document.createTextNode("Remover"));
+            btnRemoverFavorito.setAttribute("id", 'btnRemover');
+            btnRemoverFavorito.setAttribute("class", "btn btn-danger");
+            cardBody.appendChild(btnRemoverFavorito);
+
+        }
 
         return card;
     }
@@ -134,14 +144,6 @@ class Filme {
         btnFechar.setAttribute("class", "btn btn-warning");
         divBotao.appendChild(btnFechar);
         
-
-
-        let btnRemoverFavorito = document.createElement('button');
-        btnRemoverFavorito.appendChild(document.createTextNode("Remover"));
-        btnRemoverFavorito.setAttribute("id", 'btnRemover');
-        btnRemoverFavorito.setAttribute("class", "btn btn-danger");
-        divBotao.appendChild(btnRemoverFavorito);
-
 
         
         //relacionando os elementos do card
