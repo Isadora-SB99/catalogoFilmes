@@ -79,7 +79,7 @@ class Filme {
         this.btnDetalhes = document.createElement('button');
         this.btnDetalhes.appendChild(document.createTextNode("Detalhes"));
         this.btnDetalhes.setAttribute("id", this.id);
-        this.btnDetalhes.setAttribute("class", "btnDetalhesFilme");
+        this.btnDetalhes.setAttribute("class", "btnDetalhesFilme btn btn-primary");
     }
 
     getBtnDetalhes = () => {
@@ -121,18 +121,28 @@ class Filme {
         let divBotao = document.createElement("div");
         divBotao.setAttribute("class", "d-grid gap-2 d-md-block");
 
-        //criando botão salvar
+        //criando botões
         let btnSalvar = document.createElement("button");
         btnSalvar.appendChild(document.createTextNode("Salvar"));
         btnSalvar.setAttribute("id", 'btnSalvar');
-        btnSalvar.setAttribute("class", "btn btn-warning");
+        btnSalvar.setAttribute("class", "btn btn-success");
         divBotao.appendChild(btnSalvar);
         
         let btnFechar = document.createElement("button");
         btnFechar.appendChild(document.createTextNode("Fechar"));
         btnFechar.setAttribute("id", 'btnFechar');
-        btnFechar.setAttribute("class", "btn btn-danger");
+        btnFechar.setAttribute("class", "btn btn-warning");
         divBotao.appendChild(btnFechar);
+        
+
+
+        let btnRemoverFavorito = document.createElement('button');
+        btnRemoverFavorito.appendChild(document.createTextNode("Remover"));
+        btnRemoverFavorito.setAttribute("id", 'btnRemover');
+        btnRemoverFavorito.setAttribute("class", "btn btn-danger");
+        divBotao.appendChild(btnRemoverFavorito);
+
+
         
         //relacionando os elementos do card
 
@@ -161,18 +171,5 @@ class Filme {
         cardDetalhado.appendChild(divRow);
 
         return cardDetalhado;
-
     }
-
-    setBtnRemoverFavorito = () =>{
-        this.btnRemoverFavorito = document.createElement('button');
-        this.btnRemoverFavorito.appendChild(document.createTextNode("Remover"));
-        this.btnRemoverFavorito.setAttribute("id", this.id);
-        this.btnRemoverFavorito.setAttribute("class", "btnRemoverFavorito");
-    }
-
-    getBtnRemoverFavorito = () => {
-        return this.btnRemoverFavorito;
-    }
-
 }

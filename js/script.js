@@ -82,7 +82,12 @@ let detalhesFilme = async (id) => {
 
             document.querySelector("#btnSalvar").onclick = () =>{
                 salvarFilme(filme);
+                document.querySelector("#btnRemover").style.display = "flex";
                 // divBotao.appendChild(getBtnRemoverFavorito);
+            }
+
+            document.querySelector("#btnRemover").onclick = () => {
+                removerFavorito(id);
             }
 
             document.querySelector("#lista-filmes").style.display = "none";
@@ -136,13 +141,12 @@ let listarFavoritos = () => {
     listarFilmes(filmes);
 }
 
+//quando o filme for salvo como favorito ---> colocar botao de remover dos favoritos
 let removerFavorito = (id) => {
     let filmesString = localStorage.getItem('filmesFavoritos');
     var filmes = JSON.parse(filmesString);
-
     let indexFilmeRemover = filme => filme.id == id;
     let filmeRemover = filmes.findIndex(indexFilmeRemover);
     filmes.splice(filmeRemover, 1);
-    
     localStorage.setItem('filmesFavoritos', JSON.stringify(filmes));
 }
