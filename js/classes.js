@@ -97,7 +97,6 @@ class Filme {
     }
 
     getDetalhesFilme = () => {
-        //criando os elementos do card
         let cardDetalhado = document.createElement("div");
         cardDetalhado.setAttribute("class", "card mb-3");
         cardDetalhado.setAttribute("style", "max-width: 540px;");
@@ -131,7 +130,6 @@ class Filme {
         let divBotao = document.createElement("div");
         divBotao.setAttribute("class", "d-grid gap-2 d-md-block");
 
-        //criando botões
         let btnSalvar = document.createElement("button");
         btnSalvar.appendChild(document.createTextNode("Salvar"));
         btnSalvar.setAttribute("id", 'btnSalvar');
@@ -143,10 +141,6 @@ class Filme {
         btnFechar.setAttribute("id", 'btnFechar');
         btnFechar.setAttribute("class", "btn btn-warning");
         divBotao.appendChild(btnFechar);
-        
-
-        
-        //relacionando os elementos do card
 
         hCardTitle.appendChild(document.createTextNode(this.titulo));
         pSinopse.appendChild(document.createTextNode(this.sinopse));

@@ -1,8 +1,6 @@
 let inputBuscarFilme = document.querySelector("#input-buscar-filme");
 let btnBuscarFilme = document.querySelector("#btn-buscar-filme");
 
-// let btnSalvar = document.querySelector("button");
-
 let navFavoritos = document.querySelector("#nav-favoritos");
 
 btnBuscarFilme.onclick = () => {
@@ -13,7 +11,6 @@ btnBuscarFilme.onclick = () => {
             .then((resp) => {
                 resp.Search.forEach((item) => {
                     let filme = new Filme(
-                        
                         item.imdbID,
                         item.Title,
                         item.Year,
@@ -25,7 +22,6 @@ btnBuscarFilme.onclick = () => {
                         null,
                         null,
                         null
-
                     );
                     filmes.push(filme);
                 });
@@ -52,7 +48,6 @@ let listarFilmes = async (filmes) => {
 }
 
 let detalhesFilme = async (id) => {
-    //se o filme estiver nos favoritos, não precisa puxar da api
     fetch("https://www.omdbapi.com/?apikey=d24fb342&i=" + id)
         .then((resp) => resp.json())
         .then((resp) => {
@@ -69,38 +64,37 @@ let detalhesFilme = async (id) => {
                 resp.Rated,
                 resp.imdbRating
             )
-            console.log(filme);
+            //console.log("FILME: ", filme);
+
             document.querySelector("#mostrar-filme").appendChild(filme.getDetalhesFilme());
-            
+
             document.querySelector("#btnFechar").onclick = () => {
                 document.querySelector("#lista-filmes").style.display = "flex";
                 document.querySelector("#mostrar-filme").innerHTML = "";
                 document.querySelector("#mostrar-filme").style.display = "none";
-            
+
             }
 
-                console.log(filme.favorito);
-                if(filme.favorito){
-                    document.querySelector("#btnRemover").onclick = () => {
-                        removerFavorito(filme.id);
-                    }
-                }else{
-                    document.querySelector("#btnSalvar").onclick = () =>{
-                        resp.favorito= true;
-                        salvarFilme(filme);
-                    }
+            //console.log("filme.favorito: ",filme.favorito);
+
+            if (filme.favorito) {
+                //console.log("chegou no if filme.favorito)");
+                document.querySelector("#btnRemover").onclick = () => {
+                    //console.log("document.querySelector(#btnRemover).onclick = () => {");
+                    removerFavorito(filme.id);
+                    //console.log("removerFavorito(filme.id);");
                 }
-
-            
-
-            // //erro, null
-            // // if(filme.favorito){
-            //     document.querySelector("#btnRemover").onclick = () => {
-            //         removerFavorito(id);
-            //     }
-            // // }
-            
-
+            } else {
+                //console.log("chegou no else de filme.favorito)");
+                document.querySelector("#btnSalvar").onclick = () => {
+                    //console.log("passou pelo document.querySelector(#btnSalvar).onclick = () =>{");
+                    filme.favorito = true;
+                    //console.log("passou pelo filme.favorito= true;", filme.favorito)
+                    salvarFilme(filme);
+                    //console.log("passou pelo salvarFilme(filme);")
+                    //console.log(filme);
+                }
+            }
             document.querySelector("#lista-filmes").style.display = "none";
             document.querySelector("#mostrar-filme").style.display = "flex";
         });
@@ -115,14 +109,17 @@ let salvarFilme = (filme) => {
         let filmesString = localStorage.getItem('filmesFavoritos');
         var filmes = JSON.parse(filmesString);
         filmes.push(filme);
-        filmes=JSON.stringify(filmes);
+        filmes = JSON.stringify(filmes);
         localStorage.setItem('filmesFavoritos', filmes);
+        console.log("SALVOU O FILME IF");
     }
-    else{
+    else {
+        filme.favorito = true;
         var filmes = JSON.parse(filmesString);
         filmes.push(filme);
-        filmes=JSON.stringify(filmes);
+        filmes = JSON.stringify(filmes);
         localStorage.setItem('filmesFavoritos', filmes);
+        console.log("SALVOU O FILME ELSE");
     }
 }
 
@@ -132,7 +129,7 @@ navFavoritos.onclick = () => {
 
 let listarFavoritos = () => {
     let filmesFavoritos = localStorage.getItem('filmesFavoritos');
-    filmesFavoritos=JSON.parse(filmesFavoritos);
+    filmesFavoritos = JSON.parse(filmesFavoritos);
     let filmes = new Array();
     filmesFavoritos.forEach((item) => {
         let filme = new Filme(
@@ -146,20 +143,27 @@ let listarFavoritos = () => {
             item.direcao,
             item.elenco,
             item.classificacao,
-            item.avaliacao
+            item.avaliacao,
+            //item.favorito=true
+            
         );
-        filme.favorito=true;
+        //console.log("item.favorito=true? ", filme.favorito);
+        filme.favorito = true;
+        //console.log("filme.favorito = true;",filme.favorito)
         filmes.push(filme);
 
     });
-    console.log(filmes);
-    listarFilmes(filmes);
+    //console.log("ARRAY FILMES: ",filmes);
+    listarFilmes(filmes);    
 }
 
-//quando o filme for salvo como favorito ---> colocar botao de remover dos favoritos
 let removerFavorito = (id) => {
+    //não está chegando aqui
+    console.log("metodo removerFavorito");
     let filmesString = localStorage.getItem('filmesFavoritos');
     var filmes = JSON.parse(filmesString);
+
+//    metodo certo
     for(i=0;i<filmes.length; i++){
         if(filmes[i].id==id){
             filmes[i].favorito=false;
@@ -167,15 +171,26 @@ let removerFavorito = (id) => {
             filmes.splice(filmeRemover, 1);
         }
     }
-//   filmes.forEach((filme)=>{
-//     if(filme.id==id){
-//         let filmeRemover = filmes.findIndex(indexFilmeRemover);
-//         filmes.splice(filmeRemover, 1);
-//     }
-//   });
-//     let indexFilmeRemover = filme => filme.id == id;
-//     let filmeRemover = filmes.findIndex(indexFilmeRemover);
-//     filmes.splice(filmeRemover, 1);
+
+    //metodo certo
+    // for(i=0;i<filmes.length; i++){
+    //     if(filmes[i].id==id){
+    //         filmes[i].favorito=false;
+    //         let filmeRemover = filmes.findIndex(i);
+    //         filmes.splice(filmeRemover, 1);
+    //     }
+    // }
+
+    //metodo errado
+    //   filmes.forEach((filme)=>{
+    //     if(filme.id==id){
+    //         let filmeRemover = filmes.findIndex(indexFilmeRemover);
+    //         filmes.splice(filmeRemover, 1);
+    //     }
+    //   });
+    //     let indexFilmeRemover = filme => filme.id == id;
+    //     let filmeRemover = filmes.findIndex(indexFilmeRemover);
+    //     filmes.splice(filmeRemover, 1);
 
     localStorage.setItem('filmesFavoritos', JSON.stringify(filmes));
 }
